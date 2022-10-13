@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/6ff1e80dcd.js" crossorigin="anonymous"></script>
+    <title>Article</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Article Page</h1>
+            <a href="/users/logout"><button class="button-64 button-65">Logout</button></a>
+            <a href="/"><button class="button-64 button-65 button-67">Back to home</button></a>
+        </nav>
+
+    </header>
+    <main class="article-single">
+        <section class="container ">
+            <h2>
+                <%= article.title %>
+            </h2>
+            <p>
+                <strong>By:</strong>
+                <%= article.author.firstname %>
+                <%= article.author.lastname %>
+
+            </p>
+            <p>
+                <strong>Description:</strong>
+                <%= article.description %>
+            </p>
+            <p>
+                <strong>Likes:</strong>
+                <%= article.likes%>
+            </p>
+
+            <a href="/articles/<%= article.slug%>/inc" class="like"><i class="fa-solid fa-heart"></i> Like</a>
+            <a href="/articles/<%= article.slug%>/dec" class="dislike"><i class="fa-solid fa-heart-crack"></i>
+                Dislike</a>
+            <% if(user.id == article.author.id){%>
+            <div>
+                <a href="/articles/<%= article.slug%>/edit"><button class="btn-blue btn">Edit
+                        Article</button></a>
+                <a href="/articles/<%= article.slug%>/delete"><button class="btn-red btn">Delete Article</button></a>
+            </div>
+            <%}%>
+
+        </section>
+        <section class="container">
+            <h4>Add Comment</h4>
+            <form class="form-control-comments" method="POST" action="/articles/<%= article.slug%>/comments">
+            <textarea name="content" id="" rows="8"></textarea>
+            <input type="submit" class="comment-btn" value="Comment ">
+            </form>
+        </section>
+        <section class="container">
+            <h4>Comments</h4>
+            <hr>
+            <% comments.forEach((comment)=>{ %>
+            <div class="comment">
+                <p>
+                    <%=comment.author.firstname%>
+                    <%=comment.author.lastname%>
+                    <span>
+                        at <%=String(comment.updatedAt).slice(4,21)%>
+                    </span>
+                </p>
+                <p>
+                    <%=comment.content%>
+                </p>
+                <p>
+                    Likes: <%=comment.likes%>
+
+                    <a href="/comments/<%= comment._id%>/like" class="like"><i class="fa-solid fa-thumbs-up"></i>
+                    </a>
+                    <a href="/comments/<%= comment._id%>/dislike" class="dislike"><i
+                            class="fa-solid fa-thumbs-down"></i>
+                    </a>
+                </p>
+                <% if(user.id == comment.author.id){%>
+                <div> <a href="/comments/<%= comment._id%>/edit"><button class="btn-blue btn">Edit</button></a>
+                    <a href="/comments/<%= comment._id%>/delete"><button class="btn-red btn">Delete</button></a>
+                </div>
+                <%}%>
+
+            </div>
+            <%})%>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

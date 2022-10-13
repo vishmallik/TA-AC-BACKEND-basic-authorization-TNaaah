@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <nav>
+    <h1>
+      <%= title %> App
+      <% if(user){ %>
+
+      <a href="/users/logout"><button class="button-64 button-65">Logout</button></a>
+      <% } %>
+    </h1>
+  </nav>
+
+  <section class=" hero">
+    <div class="container">
+      <p>Welcome to my <%= title %>
+      </p>
+      <article>
+        <% if(user){ %>
+        <a href="/articles" class="article-btn"><button class="button-64 login">Show Articles</button></a>
+        <% } else { %>
+        <a href="/users/login" class="article-btn"><button class="button-64 login">Login</button></a>
+        <a href="/users/register" class="article-btn"><button class="button-64 register">Register</button></a>
+        <% } %>
+      </article>
+    </div>
+
+  </section>
+
+
+
+</body>
+
+</html>
