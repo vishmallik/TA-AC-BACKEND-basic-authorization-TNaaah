@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') -%>
+
+<body>
+    <header class=" py-4 bg-blue-500 ">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="w-1 text-yellow-300 font-bold text-3xl">Shopkart</a>
+            <nav class="">
+                <ul class="list-none flex items-center align-middle">
+                    <li class="px-5 text-xl text-white"><i class="fa-solid fa-user"></i> <%=user.name%> (<%=user.auth%>)
+                    </li>
+                    <li class="px-5 text-xl text-white"><a href="/">Home</a></li>
+                    <%if(user && user.auth == "admin"){%>
+
+                    <li class="px-5 text-xl text-white"><a href="/users/admin">Admin Dashboard</a></li>
+                    <%}%>                    
+                    <li class="px-5 text-xl text-white"><a href="/products/cart">
+                            Go to Cart
+                            <i class="fa-solid fa-cart-shopping pl-4"></i></a>
+                    </li>
+                    <%if(user){%>
+                    <li class="px-5 text-xl text-white"><a href="/users/logout">Logout</a></li>
+                    <%} else {%>
+                    <li class="px-5 text-xl text-white"><a href="/users/login">Log In</a></li>
+                    <%}%>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+       
+        <section class="flex justify-start container mx-auto flex-wrap pt-16 ">
+            <div class="mx-auto">
+                <h2 class="underline text-4xl  text-amber-600 mb-8">List of all Categories</h2>
+                <ul >
+                    <%products.forEach((product)=>{%>
+                    <% product.category.forEach(cat=>{%>
+                    <li class="list-disc py-4 text-lg">
+                        <a href="/products/category/<%=cat%>"
+                            class="underline text-blue-700 text-2xl pr-4"><%=capitalize(cat)%></a>
+                    </li>
+                    <% })%>
+                    <%})%>
+                </ul>
+        </div>
+        </section>
+        </main>
+        <footer>
+
+        </footer>
+</body>
+
+</html>

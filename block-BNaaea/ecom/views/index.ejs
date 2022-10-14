@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head') -%>
+
+
+<body>
+
+  <header class=" py-4 bg-blue-500 ">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="w-1 text-yellow-300 font-bold text-3xl">Shopkart</a>
+      <nav class="">
+        <ul class="list-none flex items-center align-middle">
+          <%if(user){%>
+          <li class="px-5 text-xl text-white"><i class="fa-solid fa-user"></i> <%=user.name%> (<%=user.auth%>)
+          </li>
+          <% }%>
+          <li class="px-5 text-xl text-white"><a href="/">Home</a></li>
+          <li class="px-5 text-xl text-white"><a href="/products/">Products</a>
+          </li>
+          <%if(user){%>
+          <li class="px-5 text-xl text-white"><a href="/users/logout">Logout</a></li>
+          <%} else {%>
+          <li class="px-5 text-xl text-white"><a href="/users/login">Login</a></li>
+          <% }%>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+    <section class="container mx-auto py-10 flex justify-between">
+      <div class="basis-2/3">
+        <h1 class="text-blue-400 text-7xl pt-40">
+          Welcome to India's Biggest Marketplace
+        </h1>
+        <p class="my-5 text-2xl">Login or Register to get started</p>
+      </div>
+
+      <form action="/users/register" method="POST"
+        class="flex flex-col basis-48 border-4 border-teal-100 rounded-lg p-8 border-solid">
+        <label for="" class="mx-auto text-4xl py-8"> Create new Account</label>
+        <label class="text-red-500 text-xl mx-auto py-4 text-center">
+          <%=msg%>
+        </label>
+        <input class="py-2 border-teal-100 border-2 my-2 px-4 rounded-lg text-2xl w-100  " type="text"
+          placeholder="Name" name="name">
+        <input class="py-2 border-teal-100 border-2 my-2 px-4 rounded-lg text-2xl w-100  " type="email"
+          placeholder="Email" name="email">
+        <input class="py-2 border-teal-100 border-2 my-2 px-4 rounded-lg text-2xl w-100  " type="tel"
+          placeholder="Phone" name="phone">
+        <input class="py-2 border-teal-100 border-2 my-2 px-4 rounded-lg text-2xl w-100  " type="password"
+          name="password" placeholder="Password">
+        <div class="py-2 text-xl">
+          <input type="radio" name="auth" id="admin" value="admin">
+          <label for="admin" class="pl-2 pr-5">Admin</label>
+          <input type="radio" name="auth" id="user" value="user" checked>
+          <label for="user" class="pl-2">User</label>
+        </div>
+        <input class="py-2 border-teal-100 border-2 my-2 px-4 rounded-lg text-2xl w-100 bg-teal-400 text-white"
+          type="submit" value="Create Account">
+      </form>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
