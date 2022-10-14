@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') -%>
+
+<body>
+    <header class=" py-4 bg-blue-500 ">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="w-1 text-yellow-300 font-bold text-3xl">Shopkart</a>
+            <nav class="">
+                <ul class="list-none flex items-center align-middle">
+                    <li class="px-5 text-xl text-white"><i class="fa-solid fa-user"></i> <%=user.name%> (<%=user.auth%>)
+                    </li>
+                    <li class="px-5 text-xl text-white"><a href="/">Home</a></li>
+                    <li class="px-5 text-xl text-white"><a href="/products/cart">
+                            Go to Cart<i class="fa-solid fa-cart-shopping pl-4"></i></a>
+                    </li>
+                    <li class="px-5 text-xl text-white"><a href="/users/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="flex justify-start container mx-auto flex-wrap pt-28 flex-col">
+            <div class="mx-auto text-center py-10 px-6 basis-1/4 flex">
+                <div class="basis-1/5 mr-28">
+                    <img src="<%=product.image%>" alt="<%=product.name%>" class="w-full">
+                </div>
+                <div class="pl-10 flex items-center">
+                    <h3 class="text-4xl py-2 mx-auto ">
+                        <%=product.name%>
+                    </h3>
+                </div>
+                <p class="text-xl py-2 flex items-center ml-20">
+                    <strong class="font-bold">Price:</strong> ₹<%=product.price%>
+                </p>
+            </div>
+            <hr>
+            <div class="mt-20 text-3xl pr-96 text-right"><strong class="font-bold">Total:</strong>
+                ₹
+                <%=product.price%>
+                <a href=""
+                    class="bg-orange-400 rounded-lg py-2 px-4 text-white inline-block font-semibold ml-32 my-4  text-xl">Checkout
+                </a>
+            </div>
+            <hr class="mb-18">
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
