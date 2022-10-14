@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') -%>
+
+<body>
+    <header class=" py-4 bg-blue-500 ">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="w-1 text-yellow-300 font-bold text-3xl">Shopkart</a>
+            <nav class="">
+                <ul class="list-none flex items-center align-middle">
+                    <li class="px-5 text-xl text-white"><i class="fa-solid fa-user"></i> <%=user.name%> (<%=user.auth%>)
+                    </li>
+                    <li class="px-5 text-xl text-white"><a href="/">Home</a></li>
+                    <li class="px-5 text-xl text-white"><a href="/products">
+                            Products</a>
+                    </li>
+                    <li class="px-5 text-xl text-white"><a href="/users/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h1 class="text-4xl mx-auto text-center text-amber-600 underline py-6">Admin Dashboard</h1>
+        <% if(error){%>
+        <p class="mx-auto text-red-500 text-center text-xl font-semibold"><%=error%></p>
+
+        <% }%>
+        <%  if (success){%>
+        <p class="mx-auto text-green-500 text-xl text-center font-semibold"><%=success%></p>
+
+        <% }%>
+        <section class="flex justify-between container mx-auto py-10">
+            <div class="basis-1/5">
+                <h2 class=" underline text-2xl  text-amber-600">List of all users</h2>
+                <ul>
+                    <%users.forEach((user)=>{%>
+                    <li class="list-disc py-4 text-lg"> <strong class="font-bold">Name:</strong><%=user.name%>
+                        <br>
+                        <strong class="font-bold">Email:</strong> <%=user.email%>
+                        <br>
+                        <strong class="font-bold">Phone:</strong> <%=user.phone%>
+                        <br>
+                        <strong class="font-bold">User type:</strong> <%=user.auth%>
+                        <br>
+                        <%if(user.isBlocked){%>
+                        <a class=" underline text-green-500 pr-4" href="/users/unblock/<%=user.id%>">Unblock user</a>
+                        <%} else {%>
+                        <a class=" underline text-red-500 pr-4" href="/users/block/<%=user.id%>">Block user</a>
+                        <%}%>
+
+                    </li>
+                    <%})%>
+                </ul>
+            </div>
+
+            <div class="basis-1/5">
+                <h2 class=" underline text-2xl  text-amber-600">List of all Products</h2>
+                <ul>
+                    <%products.forEach((product)=>{%>
+                    <li class="list-disc py-4 text-lg"> <strong class="font-bold">Name:</strong><%=product.name%>
+                        <br>
+                        <strong class="font-bold">Quantity: </strong> <%=product.quantity%>
+                        <br>
+                        <strong class="font-bold">Price: </strong> <%=product.price%>
+                        <br>
+                        <a href="/products/<%=product.id%>/edit" class="underline text-blue-700 pr-4">Edit</a>
+                        <a href="/products/<%=product.id%>/delete" class="underline text-red-500">Delete</a>
+                    </li>
+                    <%})%>
+                </ul>
+            </div>
+            <div class="basis-1/5">
+                <h2 class="basis-1/5 underline text-2xl  text-amber-600">List of all Categories</h2>
+                <ul>
+                    <%products.forEach((product)=>{%>
+                    <% product.category.forEach(cat=>{%>
+                    <li class="list-disc py-4 text-lg">
+                        <a href="/products/category/<%=cat%>"
+                            class="underline text-blue-700 pr-4"><%=capitalize(cat)%></a>
+                    </li>
+                    <% })%>
+                    <%})%>
+                </ul>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

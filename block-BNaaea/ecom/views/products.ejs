@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') -%>
+
+<body>
+    <header class=" py-4 bg-blue-500 ">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="w-1 text-yellow-300 font-bold text-3xl">Shopkart</a>
+            <nav class="">
+                <ul class="list-none flex items-center align-middle">
+                    <li class="px-5 text-xl text-white"><i class="fa-solid fa-user"></i> <%=user.name%> (<%=user.auth%>)
+                    </li>
+                    <li class="px-5 text-xl text-white"><a href="/">Home</a></li>
+                    <%if(user && user.auth == "admin"){%>
+
+                    <li class="px-5 text-xl text-white"><a href="/users/admin">Admin Dashboard</a></li>
+                    <%}%>
+                    <li class="px-5 text-xl text-white"><a href="/products/cart">
+                            Go to Cart
+                            <i class="fa-solid fa-cart-shopping pl-4"></i></a>
+                    </li>
+                    <%if(user){%>
+                    <li class="px-5 text-xl text-white"><a href="/users/logout">Logout</a></li>
+                    <%} else {%>
+                    <li class="px-5 text-xl text-white"><a href="/users/login">Log In</a></li>
+                    <%}%>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="relative"> 
+            <a href="/products/category"
+                        class="rounded-lg bg-blue-400 px-4 py-2 text-lg text-white  mx-4 top-6 absolute right-4">View all Categories</a>
+            <%if(user && user.auth == "admin"){%>
+                    <a href=" /products/new"
+                        class="rounded-lg bg-blue-400 px-4 py-2 text-lg text-white  mx-4 top-6 absolute right-56">
+                        Add new product</a>
+                    <%}%>
+        </section>
+        <section class="flex justify-start container mx-auto flex-wrap pt-28 ">
+            <%products.forEach(product=>{%>
+                    <div class="mx-auto text-center py-10 px-6 basis-1/4">
+                        <div class=""> <img src="<%=product.image%>" alt="<%=product.name%>" class="w-full">
+                        </div>
+                        <h3 class="text-4xl py-2 mx-auto">
+                            <%=product.name%>
+                        </h3>
+                        <p class="text-xl"> <strong class="font-bold">Quantity: </strong>
+                            <%=product.quantity%>
+                        </p>
+                        <p class="text-xl py-2
+                            "> <strong class="font-bold">Price:</strong> ₹<%=product.price%>
+                        </p>
+                        <p class="text-xl"><i class=" fas fa-heart py-2 text-red-600 mr-2"></i>
+                            <%=product.likes%>
+                        </p>
+                        <a href="/products/<%=product.id%>"
+                            class="bg-blue-400 rounded-lg py-2 px-6 text-white font-semibold inline-block my-4 text-xl">View
+                            Details</a>
+                    </div>
+                    <%})%>
+
+                    </section>
+                    </main>
+                    <footer>
+
+                    </footer>
+</body>
+
+</html>
