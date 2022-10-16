@@ -6,7 +6,9 @@ const podcastSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String },
     featuring: [{ type: String }],
-    posted: Date,
+    type: { type: String, enum: ["Free", "VIP", "Premium"], default: "Free" },
+    url: { type: String, required: true },
+    isVerified: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

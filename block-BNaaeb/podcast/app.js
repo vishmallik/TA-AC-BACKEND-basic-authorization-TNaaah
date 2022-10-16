@@ -7,11 +7,17 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const session = require("express-session");
+const auth = require("./middlewares/auth");
 
-require(dotenv).config();
+require("dotenv").config();
+
+mongoose.connect("mongodb://127.0.0.1/podcast", (err) => {
+  console.log(err ? err : "Connected to Database");
+});
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const podcastRouter = require("./routes/podcasts");
 
 const app = express();
 
@@ -28,16 +34,18 @@ app.use(
   session({
     secret: process.env.SECRET,
     saveUninitialized: false,
-    unsave: true,
+    resave: false,
     store: MongoStore.create({
       client: mongoose.connection.getClient(),
     }),
   })
 );
 app.use(flash());
+app.use(auth.userData);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/podcasts", podcastRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
