@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Article List</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>List of All Articles</h1>
+            <a href="/"><button class="button-64 button-65 button-67">Back to home</button></a>
+            <a href="/articles/users/<%=user.id%>"><button class="button-64 button-65 button-68">My
+                    Articles</button></a>
+            <a href="/users/logout"><button class="button-64 button-65 ">Logout</button></a>
+        </nav>
+    </header>
+    <main class="articles">
+        <section class="container padding">
+            <article class="flex">
+                <div class=" form-control">
+                    <h2>Create new Article</h2>
+                    <form action="/articles" method="post" class="flex-form">
+                        <input type="text" name="title" placeholder="Add Title">
+                        <textarea name="description" cols="30" rows="10" placeholder="Add Description"></textarea>
+                        <input type="submit" value="Create new article">
+                    </form>
+                </div>
+            </article>
+            <h4>All Articles</h4>
+            <% articles.forEach((article)=>{ %>
+            <a href="/articles/<%= article.slug%>" class="article">
+                <%= article.title %>
+            </a>
+            <% }) %>
+        </section>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

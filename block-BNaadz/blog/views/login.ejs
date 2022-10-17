@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>User Login</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Login</h1>
+            <a href="/"><button class="button-64 button-65">Back to home</button></a>
+            <a href="/users/register"><button class="button-64 button-65 button-67">Register</button></a>
+
+        </nav>
+
+    </header>
+    <main class="container">
+        <%if(success){%>
+            <p class="success">
+                <%=success%>
+            </p>
+            <% }%>
+                <%if(error){%>
+                    <p class="error">
+                        <%=error%>
+                    </p>
+
+                    <%}%>
+                        <form action="/users/login" method="POST" class="form-control auth">
+                            <input type="email" name="email" id="" placeholder="Email">
+                            <input type="password" name="password" id="" placeholder="Password">
+                            <input type="submit" value="Login">
+                        </form>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

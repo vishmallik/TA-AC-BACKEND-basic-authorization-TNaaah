@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>User Registration</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Register new User</h1>
+            <a href="/"><button class="button-64 button-65">Back to home</button></a>
+            <a href="/users/login"><button class="button-64 button-65 button-67">Login</button></a>
+        </nav>
+
+    </header>
+    <main class=" container">
+
+        <%if(error){%>
+            <p class="error">
+                <%=error%>
+            </p>
+
+            <%}%>
+                <form action="/users/register" method="POST" class="form-control auth">
+                    <input type="text" name="firstname" id="" placeholder="First Name">
+                    <input type="text" name="lastname" id="" placeholder="Last Name">
+                    <input type="email" name="email" id="" placeholder="Email">
+                    <input type="password" name="password" id="" placeholder="Password">
+                    <input type="text" name="city" id="" placeholder="City">
+                    <input type="submit" value="Register">
+                </form>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

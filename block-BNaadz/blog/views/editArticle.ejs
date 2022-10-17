@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Edit Article</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Edit Article</h1>
+            <a href="/users/logout"><button class="button-64 button-65">Logout</button></a>
+            <a href="/"><button class="button-64 button-65 button-67">Back to home</button></a>
+        </nav>
+
+    </header>
+    <main class="edit">
+        <section class="container edit-section">
+            <div class="form-control edit-form">
+                <form action="/articles/<%= article.slug%>" method="post" class="flex-form">
+                    <input type="text" name="title" placeholder="title" value="<%=article.title%>">
+                    <textarea name="description" cols="30" rows="15"><%= article.description%></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <a href="/articles/<%= article.slug%>"><button class="button-64 button-66">Back to Article</button></a>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
