@@ -3,7 +3,6 @@ const Comment = require("../models/comment");
 const router = express.Router();
 const Article = require("../models/article");
 const auth = require("../middlewares/auth");
-const { route } = require(".");
 
 router.get("/", (req, res, next) => {
   Article.find({}, (err, articles) => {
